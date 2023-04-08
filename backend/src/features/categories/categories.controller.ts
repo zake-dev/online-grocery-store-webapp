@@ -1,4 +1,5 @@
-import { Controller, Get } from '@nestjs/common';
+import { FilterProductQuery } from '@/features/products';
+import { Controller, Get, Query } from '@nestjs/common';
 import { CategoriesService } from './categories.service';
 
 @Controller('categories')
@@ -6,7 +7,7 @@ export class CategoriesController {
   constructor(private categoriesService: CategoriesService) {}
 
   @Get('tree')
-  getCategoryTree() {
-    return this.categoriesService.findTree();
+  getCategoryTree(@Query() query: Partial<FilterProductQuery>) {
+    return this.categoriesService.findTree(query);
   }
 }

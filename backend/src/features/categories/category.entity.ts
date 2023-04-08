@@ -9,8 +9,6 @@ export class Category {
   @Column('varchar', { length: 100 })
   name: string;
 
-  @OneToMany(() => Subcategory, (subcategory) => subcategory.category, {
-    eager: true,
-  })
+  @OneToMany(() => Subcategory, (subcategory) => subcategory.category)
   subcategories: Subcategory[];
 }
