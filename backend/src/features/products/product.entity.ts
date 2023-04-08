@@ -6,6 +6,12 @@ export class Product {
   @PrimaryColumn('int')
   id: number;
 
+  @Column({ name: 'category_id', type: 'int' })
+  categoryId: number;
+
+  @Column({ name: 'subcategory_id', type: 'int' })
+  subcategoryId: number;
+
   @Column('varchar', { length: 150 })
   name: string;
 
