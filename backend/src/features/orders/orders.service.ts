@@ -1,3 +1,4 @@
+import { MailService } from '@/features/mail';
 import { Order } from '@/features/orders/order.entity';
 import { ProductsService } from '@/features/products/products.service';
 import { Injectable } from '@nestjs/common';
@@ -17,12 +18,14 @@ export class OrdersService {
     @InjectRepository(OrderProduct)
     private orderProductRepository: Repository<OrderProduct>,
     private productService: ProductsService,
+    private mailService: MailService,
   ) {}
 
   async placeOrder(placeOrderDto: PlaceOrderDto): Promise<void> {
     await Promise.allSettled([
       this.productService.sellMany(placeOrderDto.products),
       this.saveOrderDetails(placeOrderDto),
+      this.mailService.sendOrderConfirmationMail(placeOrderDto),
     ]);
   }
 
