@@ -40,4 +40,10 @@ export class ProductsService {
       content,
     };
   }
+
+  findOne(id: number) {
+    return this.productsRepository.findOne({
+      where: { id },
+    });
+  }
 }
