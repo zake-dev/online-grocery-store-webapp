@@ -1,6 +1,7 @@
 import { AppController } from '@/app.controller';
 import { AppService } from '@/app.service';
 import { CategoriesModule } from '@/features/categories';
+import { OrdersModule } from '@/features/orders';
 import { ProductsModule } from '@/features/products';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -25,6 +26,7 @@ import { DataSource } from 'typeorm';
     }),
     CategoriesModule,
     ProductsModule,
+    OrdersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
