@@ -1,3 +1,4 @@
+import { UpdateProductQuantityDto } from '@/features/products/dto/update-product-quantity.dto';
 import { Paginated, PaginatedQuery } from '@/interfaces';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -45,5 +46,19 @@ export class ProductsService {
     return this.productsRepository.findOne({
       where: { id },
     });
+  }
+
+  async sellOne(id: number, quantity: number) {
+    const product = await this.productsRepository.findOne({ where: { id } });
+    return this.productsRepository.save({
+      ...product,
+      inStock: product.inStock - quantity,
+    });
+  }
+
+  async sellMany(products: UpdateProductQuantityDto[]) {
+    await Promise.allSettled(
+      products.map((product) => this.sellOne(product.id, product.quantity)),
+    );
   }
 }
