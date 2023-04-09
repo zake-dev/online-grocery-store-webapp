@@ -1,5 +1,6 @@
 import { DeliveryDetailsDto, PlaceOrderDto } from '@/features/orders';
 import { UpdateProductQuantityDto } from '@/features/products';
+import { DatetimeFormatter } from '@/utils';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { createTransport } from 'nodemailer';
@@ -108,8 +109,12 @@ div[style*="margin: 16px 0;"] { margin: 0 !important; }
                                     <td width="75%" align="left" bgcolor="#eeeeee" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;">
                                         Order Confirmation #
                                     </td>
-                                    <td width="25%" align="left" bgcolor="#eeeeee" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;">
-                                        
+                                    <td width="25%" align="left" bgcolor="#eeeeee" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 600; line-height: 24px; padding: 10px;">
+                                        ${DatetimeFormatter.toDateString(
+                                          new Date(),
+                                        )} ${DatetimeFormatter.toTimeString(
+      new Date(),
+    )}
                                     </td>
                                 </tr>
     `;
