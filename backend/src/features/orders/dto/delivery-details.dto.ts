@@ -1,12 +1,11 @@
 import {
   IsAlpha,
   IsEmail,
-  IsInt,
   IsNotEmpty,
+  IsNumberString,
   IsString,
-  Max,
   MaxLength,
-  Min,
+  MinLength,
 } from 'class-validator';
 
 export class DeliveryDetailsDto {
@@ -41,10 +40,10 @@ export class DeliveryDetailsDto {
   suburb: string;
 
   @IsNotEmpty()
-  @IsInt()
-  @Min(1000)
-  @Max(9999)
-  postcode: number;
+  @IsNumberString()
+  @MinLength(4)
+  @MaxLength(4)
+  postcode: string;
 
   @IsNotEmpty()
   @IsAlpha()
