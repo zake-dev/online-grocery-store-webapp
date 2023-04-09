@@ -24,8 +24,8 @@ export class DeliveryDetails {
   @Column('varchar', { length: 20 })
   suburb: string;
 
-  @Column('int')
-  postcode: number;
+  @Column('varchar', { length: 4 })
+  postcode: string;
 
   @Column('varchar', { length: 10 })
   state: string;
