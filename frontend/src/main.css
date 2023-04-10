@@ -56,4 +56,33 @@
   .text-caption {
     @apply text-[12px] font-normal leading-[18px] tracking-[-0.6px];
   }
+
+  /* Button UI */
+  .btn {
+    @apply w-full flex flex-row justify-center items-center transition-colors duration-200 ease-in-out;
+  }
+  .btn-large {
+    @apply h-[60px] px-[24px] py-[4px] rounded-[8px] gap-[8px] text-headline;
+  }
+  .btn-medium {
+    @apply h-[48px] px-[16px] py-[4px] rounded-[8px] gap-[8px] text-subhead-1;
+  }
+  .btn-small {
+    @apply w-fit h-[32px] px-[16px] py-[4px] rounded-[4px] gap-[4px] text-subhead-2;
+  }
+  .btn-primary {
+    @apply bg-blue-primary text-white;
+  }
+  .btn-primary:hover {
+    @apply bg-blue-primary-dark;
+  }
+  .btn-secondary {
+    @apply bg-black-200 text-black;
+  }
+  .btn-secondary:hover {
+    @apply bg-black-300;
+  }
+  .btn:disabled {
+    @apply bg-black-400 text-black-500;
+  }
 }
