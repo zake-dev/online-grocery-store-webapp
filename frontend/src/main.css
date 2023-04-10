@@ -10,6 +10,23 @@ body,
   box-sizing: border-box;
 }
 
+#root {
+  display: grid;
+  grid-template-areas:
+    'app-bar app-bar'
+    'side-bar main';
+  grid-template-rows: 104px 1fr;
+  grid-template-columns: 350px 1fr;
+}
+
+.app-bar {
+  grid-area: app-bar;
+}
+
+.side-bar {
+  grid-area: side-bar;
+}
+
 .ReactModal__Overlay {
   opacity: 0;
   transition: opacity 200ms ease-in-out;

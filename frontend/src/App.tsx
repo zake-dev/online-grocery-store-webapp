@@ -1,13 +1,20 @@
 import React from 'react';
 
-import { RouterProvider } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
-import router from '@/router';
+import { AppBar, SideBar } from '@/components';
+import Router from '@/router';
 
 function App() {
   return (
     <React.StrictMode>
-      <RouterProvider router={router} />
+      <BrowserRouter>
+        <AppBar />
+        <SideBar />
+        <div className="main">
+          <Router />
+        </div>
+      </BrowserRouter>
     </React.StrictMode>
   );
 }

@@ -1,3 +1,3 @@
 export default function AppBar() {
-  return <div></div>;
+  return <div className="app-bar"></div>;
 }
