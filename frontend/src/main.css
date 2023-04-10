@@ -85,4 +85,9 @@
   .btn:disabled {
     @apply bg-black-400 text-black-500;
   }
+
+  /* Chip UI */
+  .chip {
+    @apply w-fit h-[24px] rounded-[8px] px-[12px] py-[4px] text-subhead-3;
+  }
 }
