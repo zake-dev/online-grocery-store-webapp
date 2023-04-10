@@ -1,11 +1,23 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { Navigate, createBrowserRouter } from 'react-router-dom';
 
-import HomePage from '@/page/HomePage';
+import { BrowsePage, CheckoutPage, ProductDetailsPage } from '@/page';
 
 const router = createBrowserRouter([
   {
-    path: '/',
-    element: <HomePage />,
+    path: 'browse',
+    element: <BrowsePage />,
+  },
+  {
+    path: 'browse/:productId',
+    element: <ProductDetailsPage />,
+  },
+  {
+    path: 'checkout',
+    element: <CheckoutPage />,
+  },
+  {
+    path: '*',
+    element: <Navigate to="browse" replace />,
   },
 ]);
 
