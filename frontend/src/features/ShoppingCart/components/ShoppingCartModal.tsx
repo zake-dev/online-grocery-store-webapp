@@ -4,6 +4,7 @@ import { ReactComponent as Close } from '@assets/icons/close.svg';
 import { ReactComponent as RightArrow } from '@assets/icons/right-arrow.svg';
 import classNames from 'classnames';
 
+import ShoppingCartItem from '@/features/ShoppingCart/components/ShoppingCartItem';
 import { useShoppingCartStore } from '@/stores';
 
 type Props = {
@@ -14,6 +15,8 @@ export default function ShoppingCartModal({ onClose }: Props) {
   const items = useShoppingCartStore((state) => state.items);
   const totalQuantity = useShoppingCartStore((state) => state.totalQuantity);
   const totalPrice = useShoppingCartStore((state) => state.totalPrice);
+
+  const onClearItems = useShoppingCartStore((state) => state.clearItems);
 
   return (
     <div className="relative w-[300px] flex flex-col items-stretch rounded-[8px] bg-white border border-black-200 shadow-[0_4px_12px_rgba(0,0,0,0.12)] overflow-hidden">
@@ -30,7 +33,11 @@ export default function ShoppingCartModal({ onClose }: Props) {
 
       <div className="h-[484px] flex flex-col gap-4 px-4 py-3">
         {items.length ? (
-          <></>
+          <div className="h-[312px] overflow-x-hidden flex flex-col gap-2 items-stretch">
+            {items.map((item) => (
+              <ShoppingCartItem key={item.id} item={item} />
+            ))}
+          </div>
         ) : (
           <div className="h-[312px] flex flex-col justify-center items-center">
             <CartEmpty />
@@ -56,7 +63,12 @@ export default function ShoppingCartModal({ onClose }: Props) {
         </div>
 
         <div className="flex flex-row gap-1">
-          <button className="btn btn-medium btn-secondary">Clear</button>
+          <button
+            className="btn btn-medium btn-secondary"
+            onClick={onClearItems}
+          >
+            Clear
+          </button>
           <button
             className="btn btn-medium btn-primary"
             disabled={!items.length}

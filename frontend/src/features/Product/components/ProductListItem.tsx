@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { SizedBox } from '@/components';
+import { useShoppingCartStore } from '@/stores';
 
 import { Product } from '../interfaces';
 import ProductImage from './ProductImage';
@@ -21,6 +22,9 @@ export default function ProductListItem({ product }: Props) {
       pathname: `/browse/${product.id}`,
       search: `?${searchParams.toString()}`,
     });
+
+  const addItem = useShoppingCartStore((state) => state.addItem);
+  const onAddItem = () => addItem(product);
 
   return (
     <div className="w-[220px] p-4 rounded-[16px] flex flex-col items-start border border-black-200">
@@ -65,7 +69,11 @@ export default function ProductListItem({ product }: Props) {
         ${product.unitPrice.toFixed(2)} per {product.unitQuantity}
       </span>
       <SizedBox height={32} />
-      <button className="btn btn-medium btn-primary" disabled={!hasStock}>
+      <button
+        className="btn btn-medium btn-primary"
+        onClick={onAddItem}
+        disabled={!hasStock}
+      >
         Add to Cart
       </button>
     </div>
