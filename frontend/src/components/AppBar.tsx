@@ -1,6 +1,7 @@
 import { ReactComponent as Logo } from '@assets/Logo.svg';
 import { NavLink } from 'react-router-dom';
 
+import PriceRangeFilterBar from './PriceRangeFilterBar';
 import SearchBar from './SearchBar';
 
 export default function AppBar() {
@@ -10,6 +11,7 @@ export default function AppBar() {
         <Logo />
       </NavLink>
       <SearchBar />
+      <PriceRangeFilterBar />
     </div>
   );
 }
