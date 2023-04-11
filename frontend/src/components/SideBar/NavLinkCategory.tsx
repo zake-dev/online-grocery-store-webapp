@@ -4,7 +4,7 @@ import { ReactComponent as DownArrow } from '@assets/icons/down-arrow.svg';
 import classNames from 'classnames';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 
-import { Category } from '@/interfaces';
+import { Category } from '@/features/Category';
 
 type Props = {
   category: Category;

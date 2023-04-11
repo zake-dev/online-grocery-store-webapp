@@ -3,7 +3,7 @@ import * as React from 'react';
 import classNames from 'classnames';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 
-import { Subcategory } from '@/interfaces';
+import { Subcategory } from '@/features/Category';
 
 type Props = {
   categoryId: number;

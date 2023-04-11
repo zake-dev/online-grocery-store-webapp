@@ -1,4 +1,4 @@
-import { Category } from '@/interfaces';
+import { Category } from '@/features/Category';
 
 import axios from './config';
 
