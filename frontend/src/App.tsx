@@ -1,13 +1,25 @@
 import React from 'react';
 
-import { RouterProvider } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { BrowserRouter } from 'react-router-dom';
 
-import router from '@/router';
+import { AppBar, SideBar } from '@/components';
+import Router from '@/router';
+
+const queryClient = new QueryClient();
 
 function App() {
   return (
     <React.StrictMode>
-      <RouterProvider router={router} />
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <AppBar />
+          <SideBar />
+          <div className="main">
+            <Router />
+          </div>
+        </BrowserRouter>
+      </QueryClientProvider>
     </React.StrictMode>
   );
 }

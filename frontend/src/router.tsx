@@ -1,12 +1,14 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
-import HomePage from '@/page/HomePage';
+import { BrowsePage, CheckoutPage, ProductDetailsPage } from '@/page';
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <HomePage />,
-  },
-]);
-
-export default router;
+export default function Router() {
+  return (
+    <Routes>
+      <Route path="/browse" element={<BrowsePage />} />
+      <Route path="/browse/:productId" element={<ProductDetailsPage />} />
+      <Route path="/checkout" element={<CheckoutPage />} />
+      <Route path="*" element={<Navigate to="/browse" />} />
+    </Routes>
+  );
+}
