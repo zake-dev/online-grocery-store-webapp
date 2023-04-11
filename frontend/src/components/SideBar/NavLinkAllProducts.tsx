@@ -10,7 +10,7 @@ export default function NavLinkAllProducts() {
 
   const isActive = React.useMemo(
     () =>
-      location.pathname === '/browse' &&
+      location.pathname.startsWith('/browse') &&
       !searchParams.has('categoryId') &&
       !searchParams.has('subcategoryId'),
     [location.pathname, searchParams],
