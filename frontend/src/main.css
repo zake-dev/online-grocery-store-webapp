@@ -147,47 +147,37 @@ body,
   .slider {
     @apply w-[250px] relative;
   }
-
   .slider__track,
   .slider__range,
   .slider__left-value,
   .slider__right-value {
     @apply absolute;
   }
-
   .slider__track,
   .slider__range {
     @apply rounded-[4px] h-2;
   }
-
   .slider__track {
     @apply w-full bg-black-300 z-[1];
   }
-
   .slider__range {
     @apply bg-blue-light-1 z-[2];
   }
-
   .slider__left-value,
   .slider__right-value {
     @apply mt-4 text-caption text-black-600;
   }
-
   .slider__left-value {
     @apply left-[2px];
   }
-
   .slider__right-value {
     @apply -right-1;
   }
-
-  /* Removing the default appearance */
   .thumb,
   .thumb::-webkit-slider-thumb {
     -webkit-appearance: none;
     -webkit-tap-highlight-color: transparent;
   }
-
   .thumb {
     pointer-events: none;
     position: absolute;
@@ -195,8 +185,6 @@ body,
     width: 250px;
     outline: none;
   }
-
-  /* For Chrome browsers */
   .thumb::-webkit-slider-thumb {
     @apply relative mt-1 w-6 h-6;
     background-color: rgb(248 250 252);
@@ -207,7 +195,6 @@ body,
     pointer-events: all;
   }
 
-  /* For Firefox browsers */
   .thumb::-moz-range-thumb {
     @apply relative mt-1 w-6 h-6;
     background-color: rgb(248 250 252);
@@ -216,5 +203,16 @@ body,
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.08);
     cursor: pointer;
     pointer-events: all;
+  }
+
+  /* Scroll Bar */
+  ::-webkit-scrollbar {
+    @apply w-1;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-black-100;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-black-300;
   }
 }
