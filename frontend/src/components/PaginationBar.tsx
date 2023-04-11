@@ -23,6 +23,8 @@ export default function PaginationBar({
     [],
   );
   const pageRanges = React.useMemo(() => {
+    if (!pagination.totalCount) return [];
+
     let low: number;
     if (pagination.page >= pagination.totalPage - 1) {
       low = clamp(pagination.totalPage - 4, 1, pagination.totalPage);

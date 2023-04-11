@@ -13,13 +13,12 @@ import NavLinkSubcategory from './NavLinkSubcategory';
 import NavLinkSubcategoryDefault from './NavLinkSubcategoryDefault';
 
 export default function SideBar() {
-  const { data: categories } = useQuery({
-    queryKey: ['categories', 'tree'],
-    queryFn: api.categories.getCategoriesTree,
-  });
-
   const location = useLocation();
   const [searchParams] = useSearchParams();
+  const { data: categories } = useQuery({
+    queryKey: ['categories', 'tree'],
+    queryFn: () => api.categories.getCategoriesTree(searchParams),
+  });
   const title = React.useMemo(() => {
     if (location.pathname === '/checkout') return 'Checkout';
     if (!searchParams.has('categoryId') && !searchParams.has('subcategoryId'))
