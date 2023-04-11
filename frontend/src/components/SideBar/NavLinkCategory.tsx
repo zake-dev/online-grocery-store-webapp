@@ -27,6 +27,7 @@ export default function NavLinkCategory({ category, children }: Props) {
   const onNavigate = () => {
     searchParams.set('categoryId', category.id.toString());
     searchParams.delete('subcategoryId');
+    searchParams.set('page', '1');
     navigate({ pathname: '/browse', search: `?${searchParams.toString()}` });
   };
 

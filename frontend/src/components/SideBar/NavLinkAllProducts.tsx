@@ -20,6 +20,7 @@ export default function NavLinkAllProducts() {
     if (location.pathname === '/browse') {
       searchParams.delete('categoryId');
       searchParams.delete('subcategoryId');
+      searchParams.set('page', '1');
       setSearchParams(searchParams);
       return;
     }
