@@ -3,7 +3,7 @@ import * as React from 'react';
 import classNames from 'classnames';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 
-import { Category } from '@/interfaces';
+import { Category } from '@/features/Category';
 
 type Props = {
   category: Category;
@@ -33,6 +33,7 @@ export default function NavLinkSubcategoryDefault({ category }: Props) {
   const onNavigate = () => {
     searchParams.set('categoryId', category.id.toString());
     searchParams.delete('subcategoryId');
+    searchParams.set('page', '1');
     navigate({ pathname: '/browse', search: `?${searchParams.toString()}` });
   };
 
