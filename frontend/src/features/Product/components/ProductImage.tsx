@@ -12,7 +12,7 @@ export default function ProductImage({ productId, ...props }: Props) {
 
   return (
     <img
-      src={`./images/products/${images[imageIndex]}`}
+      src={`/images/products/${images[imageIndex]}`}
       onError={onError}
       {...props}
     />
