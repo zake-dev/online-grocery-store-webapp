@@ -6,33 +6,29 @@ import classNames from 'classnames';
 type Props = React.HTMLProps<HTMLInputElement> & {
   label?: string;
   supportingMessage?: string;
+  invalid?: boolean;
   invalidMessage?: string;
-  validator?: (value: string) => boolean;
 };
 
-export default function TextInput({
-  label,
-  supportingMessage,
-  invalidMessage,
-  validator,
-  onInput,
-  required,
-  ...props
-}: Props) {
-  const [isValid, setIsValid] = React.useState(true);
-
-  const _onInput = (event: React.FormEvent<HTMLInputElement>) => {
-    setIsValid(validator?.call(null, event.currentTarget.value) ?? true);
-    onInput?.call(null, event);
-  };
-
+export default React.forwardRef(function TextInput(
+  {
+    label,
+    supportingMessage,
+    invalid = false,
+    invalidMessage,
+    onInput,
+    required,
+    ...props
+  }: Props,
+  ref: React.ForwardedRef<any>,
+) {
   return (
     <div className="flex-1 flex flex-col items-start gap-[4px]">
       {label ? (
-        <div className="w-full px-1 flex flex-row items-center gap-[4px] text-black-500 validate">
+        <div className="w-full px-1 flex flex-row items-center gap-[4px] text-black-500">
           <span
             className={classNames('text-caption text-inherit', {
-              'text-point-red': !isValid,
+              'text-point-red': invalid,
             })}
           >
             {label}
@@ -44,18 +40,19 @@ export default function TextInput({
       ) : null}
 
       <input
+        ref={ref}
         className={classNames(
           'w-full h-[48px] px-4 border border-black-400 rounded-[4px] text-body-2 text-black-700 focus:text-black',
           {
-            'border-point-red': !isValid,
-            'focus:outline-point-red': !isValid,
+            'border-point-red': invalid,
+            'focus:outline-point-red': invalid,
           },
         )}
-        onInput={_onInput}
+        onInput={onInput}
         {...props}
       />
 
-      {isValid ? (
+      {!invalid ? (
         <div className="w-full h-[18px] flex flex-row items-center gap-[4px]">
           <span className="px-1 text-caption text-black-500">
             {supportingMessage}
@@ -69,4 +66,4 @@ export default function TextInput({
       )}
     </div>
   );
-}
+});

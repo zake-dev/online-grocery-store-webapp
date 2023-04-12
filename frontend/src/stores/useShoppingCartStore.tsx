@@ -75,7 +75,13 @@ export const useShoppingCartStore = create<ShoppingCartStore>()(
       },
       clearItems: () => set({ items: [], totalQuantity: 0, totalPrice: 0 }),
       checkout: () => set({ shouldPlaceOrder: true }),
-      placeOrder: () => set({ shouldPlaceOrder: false }),
+      placeOrder: () =>
+        set({
+          shouldPlaceOrder: false,
+          items: [],
+          totalQuantity: 0,
+          totalPrice: 0,
+        }),
     }),
     { name: 'shopping-cart-store' },
   ),
