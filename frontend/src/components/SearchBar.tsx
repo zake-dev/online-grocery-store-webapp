@@ -1,11 +1,12 @@
 import * as React from 'react';
 
 import { ReactComponent as Search } from '@assets/icons/search.svg';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 export default function SearchBar() {
   const [query, setQuery] = React.useState('');
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
 
   const onInput = (event: React.FormEvent<HTMLInputElement>) =>
     setQuery(event.currentTarget.value);
@@ -17,7 +18,7 @@ export default function SearchBar() {
   const onSearch = () => {
     searchParams.set('name', query);
     searchParams.set('page', '1');
-    setSearchParams(searchParams);
+    navigate({ pathname: '/browse', search: `?${searchParams.toString()}` });
   };
 
   React.useEffect(() => {

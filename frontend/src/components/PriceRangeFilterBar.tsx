@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import DualRangeSlider from '@/components/DualRangeSlider';
 import SizedBox from '@/components/SizedBox';
@@ -9,9 +9,11 @@ const PRICE_MIN_RANGE = 0;
 const PRICE_MAX_RANGE = 50;
 
 export default function PriceRangeFilterBar() {
+  const navigate = useNavigate();
+
   const [priceLow, setPriceLow] = React.useState(PRICE_MIN_RANGE);
   const [priceHigh, setPriceHigh] = React.useState(PRICE_MAX_RANGE);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const [resetCount, setResetCount] = React.useState(1);
 
   const onChange = (range: { min: number; max: number }) => {
@@ -22,7 +24,7 @@ export default function PriceRangeFilterBar() {
   const onFilter = () => {
     searchParams.set('priceLow', priceLow.toString());
     searchParams.set('priceHigh', priceHigh.toString());
-    setSearchParams(searchParams);
+    navigate({ pathname: '/browse', search: `?${searchParams.toString()}` });
   };
 
   React.useEffect(() => {
