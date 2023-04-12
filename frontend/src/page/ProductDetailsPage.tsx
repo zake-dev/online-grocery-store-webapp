@@ -14,6 +14,9 @@ export default function ProductDetailsPage() {
     queryFn: () => api.products.getProduct(id),
   });
 
+  const items = useShoppingCartStore((state) => state.items);
+  const hasStock = !!items.length;
+
   const addItem = useShoppingCartStore((state) => state.addItem);
   const onAddItem = () => {
     if (productDetails) addItem(productDetails);
@@ -41,9 +44,15 @@ export default function ProductDetailsPage() {
               {productDetails?.unitQuantity}
             </span>
           </p>
-          <button className="btn btn-medium btn-primary" onClick={onAddItem}>
-            Add to Cart
-          </button>
+          {hasStock ? (
+            <button className="btn btn-medium btn-primary" onClick={onAddItem}>
+              Add to Cart
+            </button>
+          ) : (
+            <button className="btn btn-medium btn-secondary" disabled>
+              Out of Stock
+            </button>
+          )}
         </div>
       </div>
 
