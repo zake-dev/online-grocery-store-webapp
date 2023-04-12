@@ -58,7 +58,9 @@ export default function ProductDetailsPage() {
 
       <p className="w-[814px] flex flex-col gap-2 py-8">
         <span className="text-headline">Product Details</span>
-        <span className="text-body-1">{productDetails?.details}</span>
+        <span className="text-body-1">
+          {productDetails?.details || 'No description'}
+        </span>
       </p>
     </div>
   );
