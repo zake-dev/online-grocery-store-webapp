@@ -18,6 +18,8 @@ export default function SearchBar() {
   const onSearch = () => {
     searchParams.set('name', query);
     searchParams.set('page', '1');
+    searchParams.delete('categoryId');
+    searchParams.delete('subcategoryId');
     navigate({ pathname: '/browse', search: `?${searchParams.toString()}` });
   };
 

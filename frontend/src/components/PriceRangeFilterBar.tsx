@@ -24,6 +24,8 @@ export default function PriceRangeFilterBar() {
   const onFilter = () => {
     searchParams.set('priceLow', priceLow.toString());
     searchParams.set('priceHigh', priceHigh.toString());
+    searchParams.delete('categoryId');
+    searchParams.delete('subcategoryId');
     navigate({ pathname: '/browse', search: `?${searchParams.toString()}` });
   };
 
