@@ -22,7 +22,7 @@ export default function ProductDetailsPage() {
   const onHistoryBack = () => history.back();
 
   return (
-    <div className="page-container gap-4 p-16">
+    <div className="page-container gap-12 p-16">
       <button className="btn btn-small btn-secondary" onClick={onHistoryBack}>
         <LeftArrow className="w-3 h-3" />
         <span>Back to List</span>
