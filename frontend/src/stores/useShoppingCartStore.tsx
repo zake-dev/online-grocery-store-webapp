@@ -7,11 +7,14 @@ type ShoppingCartStore = {
   items: (Product & { quantity: number })[];
   totalQuantity: number;
   totalPrice: number;
+  shouldPlaceOrder: boolean;
   addItem: (target: Product) => void;
   removeItem: (target: Product) => void;
   increaseItem: (target: Product) => void;
   decreaseItem: (target: Product) => void;
   clearItems: () => void;
+  checkout: () => void;
+  placeOrder: () => void;
 };
 
 export const useShoppingCartStore = create<ShoppingCartStore>()(
@@ -20,6 +23,7 @@ export const useShoppingCartStore = create<ShoppingCartStore>()(
       items: [],
       totalQuantity: 0,
       totalPrice: 0,
+      shouldPlaceOrder: false,
       addItem: (target: Product) => {
         const { items, totalQuantity, totalPrice } = get();
 
@@ -70,6 +74,8 @@ export const useShoppingCartStore = create<ShoppingCartStore>()(
         });
       },
       clearItems: () => set({ items: [], totalQuantity: 0, totalPrice: 0 }),
+      checkout: () => set({ shouldPlaceOrder: true }),
+      placeOrder: () => set({ shouldPlaceOrder: false }),
     }),
     { name: 'shopping-cart-store' },
   ),

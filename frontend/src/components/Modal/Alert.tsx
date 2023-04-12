@@ -24,6 +24,7 @@ export default function Alert({
       className="absolute top-2/4 left-2/4 translate-x-[-50%] translate-y-[-50%] w-[240px] outline-none drop-shadow-md bg-white rounded-[8px] px-4 py-6 flex flex-col gap-[16px] items-center"
       closeTimeoutMS={200}
       onRequestClose={onRequestClose}
+      appElement={document.getElementById('root') as HTMLElement}
       {...props}
     >
       <ModalIcon />

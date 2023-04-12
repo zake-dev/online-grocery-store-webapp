@@ -3,6 +3,7 @@ import { ReactComponent as Cart } from '@assets/icons/cart.svg';
 import { ReactComponent as Close } from '@assets/icons/close.svg';
 import { ReactComponent as RightArrow } from '@assets/icons/right-arrow.svg';
 import classNames from 'classnames';
+import { useNavigate } from 'react-router-dom';
 
 import ShoppingCartItem from '@/features/ShoppingCart/components/ShoppingCartItem';
 import { useShoppingCartStore } from '@/stores';
@@ -12,11 +13,18 @@ type Props = {
 };
 
 export default function ShoppingCartModal({ onClose }: Props) {
+  const navigate = useNavigate();
+
   const items = useShoppingCartStore((state) => state.items);
   const totalQuantity = useShoppingCartStore((state) => state.totalQuantity);
   const totalPrice = useShoppingCartStore((state) => state.totalPrice);
+  const checkout = useShoppingCartStore((state) => state.checkout);
 
   const onClearItems = useShoppingCartStore((state) => state.clearItems);
+  const onCheckout = () => {
+    navigate('/checkout');
+    checkout();
+  };
 
   return (
     <div className="relative w-[300px] flex flex-col items-stretch rounded-[8px] bg-white border border-black-200 shadow-[0_4px_12px_rgba(0,0,0,0.12)] overflow-hidden">
@@ -72,6 +80,7 @@ export default function ShoppingCartModal({ onClose }: Props) {
           <button
             className="btn btn-medium btn-primary"
             disabled={!items.length}
+            onClick={onCheckout}
           >
             <span>Checkout</span>
             <RightArrow
