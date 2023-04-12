@@ -72,7 +72,7 @@ export default function ShoppingCartModal({ onClose }: Props) {
 
         <div className="flex flex-row gap-1">
           <button
-            className="btn btn-medium btn-secondary"
+            className="btn btn-medium btn-secondary w-fit"
             onClick={onClearItems}
           >
             Clear

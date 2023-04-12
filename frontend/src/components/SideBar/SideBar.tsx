@@ -15,8 +15,12 @@ import NavLinkSubcategoryDefault from './NavLinkSubcategoryDefault';
 export default function SideBar() {
   const location = useLocation();
   const [searchParams] = useSearchParams();
+  const nameQuery = searchParams.get('name');
+  const priceLowQuery = searchParams.get('priceLow');
+  const priceHighQuery = searchParams.get('priceHigh');
+
   const { data: categories } = useQuery({
-    queryKey: ['categories', 'tree'],
+    queryKey: ['categories', nameQuery, priceLowQuery, priceHighQuery],
     queryFn: () => api.categories.getCategoriesTree(searchParams),
   });
   const title = React.useMemo(() => {

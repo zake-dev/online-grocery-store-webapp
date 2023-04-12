@@ -3,16 +3,25 @@ import * as React from 'react';
 import classNames from 'classnames';
 import { useLocation, useNavigate } from 'react-router-dom';
 
+import { useShoppingCartStore } from '@/stores';
+
 export default function NavLinkCheckout() {
   const location = useLocation();
   const navigate = useNavigate();
-
   const isActive = React.useMemo(
     () => location.pathname === '/checkout',
     [location.pathname],
   );
 
-  const onNavigate = () => navigate('/checkout');
+  const items = useShoppingCartStore((state) => state.items);
+  const checkout = useShoppingCartStore((state) => state.checkout);
+
+  const onNavigate = () => {
+    checkout();
+    navigate('/checkout');
+  };
+
+  if (!items.length) return <></>;
 
   return (
     <button
