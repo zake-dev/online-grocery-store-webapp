@@ -1,7 +1,7 @@
 import { Subcategory } from '@/features/categories';
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
 
-@Entity()
+@Entity('PRODUCT')
 export class Product {
   @PrimaryColumn('int')
   id: number;

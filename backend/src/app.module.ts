@@ -6,7 +6,9 @@ import { OrdersModule } from '@/features/orders';
 import { ProductsModule } from '@/features/products';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ServeStaticModule } from '@nestjs/serve-static';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { join } from 'path';
 import { DataSource } from 'typeorm';
 
 @Module({
@@ -29,6 +31,9 @@ import { DataSource } from 'typeorm';
     ProductsModule,
     OrdersModule,
     MailModule,
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, 'public'),
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],

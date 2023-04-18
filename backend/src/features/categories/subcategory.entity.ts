@@ -9,7 +9,7 @@ import {
 } from 'typeorm';
 import { Category } from './category.entity';
 
-@Entity()
+@Entity('SUBCATEGORY')
 export class Subcategory {
   @PrimaryColumn('int')
   id: number;

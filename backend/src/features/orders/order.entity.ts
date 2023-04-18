@@ -10,7 +10,7 @@ import { DeliveryDetails } from './delivery-details.entity';
 import { PlaceOrderDto } from './dto/place-order.dto';
 import { OrderProduct } from './order-product.entity';
 
-@Entity()
+@Entity('ORDER')
 export class Order {
   @PrimaryGeneratedColumn()
   id: number;
