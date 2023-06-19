@@ -79,9 +79,11 @@ export const useShoppingCartStore = create<ShoppingCartStore>()(
 );
 
 function getTotalQuantity(items: (Product & { quantity: number })[]): number {
-  return items.map((item) => item.quantity).reduce((a, b) => a + b);
+  return items.map((item) => item.quantity).reduce((a, b) => a + b, 0);
 }
 
 function getTotalPrice(items: (Product & { quantity: number })[]): number {
-  return items.map((item) => item.price).reduce((a, b) => a + b);
+  return items
+    .map((item) => item.price * item.quantity)
+    .reduce((a, b) => a + b, 0);
 }
